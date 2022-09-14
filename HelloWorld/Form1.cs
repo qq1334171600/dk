@@ -33,6 +33,16 @@ namespace HelloWorld
             CLocation myLocation = new CLocation();
             myLocation.GetLocationEvent();
         }
+
+        private void label10_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label13_Click(object sender, EventArgs e)
+        {
+
+        }
     }
     class CLocation
     {
