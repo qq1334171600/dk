@@ -85,6 +85,7 @@
             this.label3.Size = new System.Drawing.Size(22, 15);
             this.label3.TabIndex = 2;
             this.label3.Text = "否";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label4
             // 
@@ -307,6 +308,8 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "HelloForm";
+            this.Load += new System.EventHandler(this.Form1_Load);
+            this.FormClosing+=new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -315,6 +318,7 @@
             this.PerformLayout();
 
         }
+       
 
         #endregion
 
