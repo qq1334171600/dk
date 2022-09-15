@@ -43,6 +43,12 @@ namespace HelloWorld
         {
 
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            Form2 formRegister=new Form2();
+            formRegister.Show();
+        }
     }
     class CLocation
     {
