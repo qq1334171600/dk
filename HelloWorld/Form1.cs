@@ -4,7 +4,9 @@ using System.ComponentModel;
 using System.Data;
 using System.Device.Location;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -38,6 +40,43 @@ namespace HelloWorld
             string address = "server=120.48.99.11;port=3306;user=root;password=5845331588; database=dk;";
             MySqlConnection connection = new MySqlConnection(address);
             return connection;
+        }
+        private string HttpPostNew(string Url, string postDataStr)
+        {
+            byte[] postBytes = Encoding.GetEncoding("utf-8").GetBytes(postDataStr);
+            HttpWebRequest request = WebRequest.Create(Url) as HttpWebRequest;//(HttpWebRequest)WebRequest.Create(Url);
+            request.Method = "POST";
+            request.ContentType = "application/json";
+            request.ContentLength = postBytes.Length;
+            Stream myRequestStream = request.GetRequestStream();
+            myRequestStream.Write(postBytes, 0, postBytes.Length);
+            myRequestStream.Close();
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            Stream myResponseStream = response.GetResponseStream();
+            StreamReader myStreamReader = new StreamReader(myResponseStream, Encoding.GetEncoding("utf-8"));
+            string retString = myStreamReader.ReadToEnd();
+            myStreamReader.Close();
+            myResponseStream.Close();
+            return retString;
+        }
+        /**
+         * http://restapi.amap.com/v3/geocode/regeo?location=119.785925777778,33.4773057777778&key=17479d86c0c6a0305024e1142351a0a4
+         * */
+        public static string HttpGetNew(string Url, string postDataStr)
+        {
+
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url + (postDataStr == "" ? "" : "?") + postDataStr);
+            request.Method = "GET";
+            request.ContentType = "text/html;charset=UTF-8";
+
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            Stream myResponseStream = response.GetResponseStream();
+            StreamReader myStreamReader = new StreamReader(myResponseStream, Encoding.UTF8);
+            string retString = myStreamReader.ReadToEnd();
+            myStreamReader.Close();
+            myResponseStream.Close();
+
+            return retString;
         }
         private void Form1_FormClosing(object sender,FormClosingEventArgs e)
         {
@@ -77,7 +116,7 @@ namespace HelloWorld
 
         private void button3_Click(object sender, EventArgs e)
         {
-            CLocation myLocation = new CLocation();
+            CLocation myLocation = new CLocation(label14);
             myLocation.GetLocationEvent();
         }
 
@@ -108,9 +147,19 @@ namespace HelloWorld
         {
 
         }
+
+        private void label14_Click(object sender, EventArgs e)
+        {
+
+        }
     }
     class CLocation
     {
+        Label mLabel14;
+        public CLocation(Label label14)
+        {
+            mLabel14 = label14;
+        }
         GeoCoordinateWatcher watcher;
 
         public void GetLocationEvent()
@@ -132,6 +181,8 @@ namespace HelloWorld
 
         void PrintPosition(double Latitude, double Longitude)
         {
+            string result=Form1.HttpGetNew("http://restapi.amap.com/v3/geocode/regeo?location=119.785925777778,33.4773057777778&key=17479d86c0c6a0305024e1142351a0a4","");
+            mLabel14.Text = result;
             MessageBox.Show("Latitude: "+Latitude+", Longitude "+Longitude);
         }
     }
