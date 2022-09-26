@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using Newtonsoft.Json;
 
 namespace HelloWorld
 {
@@ -185,7 +186,7 @@ namespace HelloWorld
 
         void watcher_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
         {
-            MessageBox.Show("watcher_PositionChanged/" + e.ToString());
+            //MessageBox.Show("watcher_PositionChanged/" + e.ToString());
             PrintPosition(e.Position.Location.Latitude, e.Position.Location.Longitude);
             if (e.Position.Location.IsUnknown)
             {
@@ -199,10 +200,24 @@ namespace HelloWorld
             
             if(result.Length > 0)
             {
-                getLocationIsSuccessful = true;
-                mLabel14.Text = result;
+                try
+                {
+                    getLocationIsSuccessful = true;
+                    Dictionary<string, object> dicJson = JsonConvert.DeserializeObject<Dictionary<string, object>>(result);
+                    string status = dicJson["status"].ToString();
+                    if (status.Equals("1"))
+                    {
+                        Dictionary<string, object> address = JsonConvert.DeserializeObject<Dictionary<string, object>>(dicJson["regeocode"].ToString());
+                        string formatedAddress = address["formatted_address"].ToString();
+                        mLabel14.Text = formatedAddress;
+                        //MessageBox.Show(formatAddress);
+                    }
+                }catch(Exception e)
+                {
+                    MessageBox.Show("程序发生错误："+e.Message);
+                }
             }
-            MessageBox.Show(result);
+           
 
         }
     }
