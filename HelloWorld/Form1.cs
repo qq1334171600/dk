@@ -1,14 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Device.Location;
-using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using Newtonsoft.Json;
@@ -157,7 +152,7 @@ namespace HelloWorld
     class CLocation
     {
         bool getLocationIsSuccessful = false;
-        Label mLabel14;
+         Label mLabel14;
         public CLocation(Label label14)
         {
             mLabel14 = label14;
@@ -167,11 +162,13 @@ namespace HelloWorld
         public void GetLocationEvent()
         {
             this.watcher = new GeoCoordinateWatcher();
-            this.watcher.PositionChanged += new EventHandler<GeoPositionChangedEventArgs<GeoCoordinate>>(watcher_PositionChanged);
+            this.watcher.PositionChanged += new EventHandler<GeoPositionChangedEventArgs<GeoCoordinate>>(Watcher_PositionChanged);
             bool started = this.watcher.TryStart(false, TimeSpan.FromMilliseconds(1000));
                 mLabel14.Text = "获取中...";
-            Timer timer = new Timer();
-            timer.Interval = 10000;
+            Timer timer = new Timer
+            {
+                Interval = 10000
+            };
             timer.Tick += (object sender, EventArgs e) => {
                 if (!getLocationIsSuccessful && !started)
                 {
@@ -184,7 +181,7 @@ namespace HelloWorld
 
         }
 
-        void watcher_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
+        void Watcher_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
         {
             //MessageBox.Show("watcher_PositionChanged/" + e.ToString());
             PrintPosition(e.Position.Location.Latitude, e.Position.Location.Longitude);
