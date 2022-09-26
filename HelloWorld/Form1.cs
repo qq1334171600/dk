@@ -155,6 +155,7 @@ namespace HelloWorld
     }
     class CLocation
     {
+        bool getLocationIsSuccessful = false;
         Label mLabel14;
         public CLocation(Label label14)
         {
@@ -167,23 +168,42 @@ namespace HelloWorld
             this.watcher = new GeoCoordinateWatcher();
             this.watcher.PositionChanged += new EventHandler<GeoPositionChangedEventArgs<GeoCoordinate>>(watcher_PositionChanged);
             bool started = this.watcher.TryStart(false, TimeSpan.FromMilliseconds(1000));
-            if (!started)
-            {
-                MessageBox.Show("GeoCoordinateWatcher timed out on start.");
-            }
+                mLabel14.Text = "获取中...";
+            Timer timer = new Timer();
+            timer.Interval = 10000;
+            timer.Tick += (object sender, EventArgs e) => {
+                if (!getLocationIsSuccessful && !started)
+                {
+                    mLabel14.Text = "获取失败";
+                    timer.Stop();
+                }
+            };
+            timer.Start();
+
+
         }
 
         void watcher_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
         {
             MessageBox.Show("watcher_PositionChanged/" + e.ToString());
             PrintPosition(e.Position.Location.Latitude, e.Position.Location.Longitude);
+            if (e.Position.Location.IsUnknown)
+            {
+                mLabel14.Text = "未知";
+            }
         }
 
         void PrintPosition(double Latitude, double Longitude)
         {
-            string result=Form1.HttpGetNew("http://restapi.amap.com/v3/geocode/regeo?location=119.785925777778,33.4773057777778&key=17479d86c0c6a0305024e1142351a0a4","");
-            mLabel14.Text = result;
-            MessageBox.Show("Latitude: "+Latitude+", Longitude "+Longitude);
+            string result=Form1.HttpGetNew("http://restapi.amap.com/v3/geocode/regeo?location="+Longitude+","+Latitude+"&key=17479d86c0c6a0305024e1142351a0a4","");
+            
+            if(result.Length > 0)
+            {
+                getLocationIsSuccessful = true;
+                mLabel14.Text = result;
+            }
+            MessageBox.Show(result);
+
         }
     }
 
