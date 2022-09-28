@@ -13,6 +13,7 @@ namespace HelloWorld
     public partial class Form1 : Form
     {
         MySqlConnection conn;
+        String filePath = "";
         public Form1()
         {
             InitializeComponent();
@@ -102,7 +103,8 @@ namespace HelloWorld
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("打卡成功");
+            string dkResult = dateTimePicker1.Text +"\n"+ label14.Text +"\n"+ filePath +"\n"+ richTextBox1.Text;
+            MessageBox.Show("打卡成功:\n"+dkResult);
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -145,6 +147,33 @@ namespace HelloWorld
         }
 
         private void label14_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonManageUser_Click(object sender, EventArgs e)
+        {
+            FormManageUsers manageUsers = new FormManageUsers();
+            manageUsers.Show();
+        }
+
+        private void buttonSelectPic_Click(object sender, EventArgs e)
+        {
+            System.Windows.Forms.OpenFileDialog fileDialog = new System.Windows.Forms.OpenFileDialog();//打开文件对话框 
+            fileDialog.InitialDirectory = System.AppDomain.CurrentDomain.BaseDirectory;//初始化路径
+            fileDialog.Filter = "图片(*.jpg;*.bmp;*.png)|*.jpg;*.bmp;*.png";//或"图片(*.jpg;*.bmp)|*.jpg;*.bmp";//过滤选项设置，文本文件，所有文件。
+            fileDialog.FilterIndex = 0;//当前使用第二个过滤字符串
+            fileDialog.RestoreDirectory = true;//对话框关闭时恢复原目录
+            fileDialog.Title = "选择图片";
+            if (fileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                filePath = fileDialog.FileName;
+                MessageBox.Show(filePath);
+                pictureBox1.LoadAsync(filePath);
+            }
+        }
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
 
         }

@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -41,6 +40,8 @@
             this.button1 = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.buttonSelectPic = new System.Windows.Forms.Button();
             this.label14 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
@@ -52,6 +53,7 @@
             this.button5 = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
+            this.buttonManageUser = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -124,7 +126,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(28, 151);
+            this.label7.Location = new System.Drawing.Point(28, 170);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(118, 24);
             this.label7.TabIndex = 2;
@@ -132,19 +134,19 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(33, 189);
+            this.pictureBox1.Image = global::HelloWorld.Properties.Resources.bg;
+            this.pictureBox1.Location = new System.Drawing.Point(32, 224);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(344, 363);
+            this.pictureBox1.Size = new System.Drawing.Size(824, 347);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(32, 866);
+            this.button1.Location = new System.Drawing.Point(308, 863);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(156, 61);
+            this.button1.Size = new System.Drawing.Size(192, 76);
             this.button1.TabIndex = 4;
             this.button1.Text = "点击打卡";
             this.button1.UseVisualStyleBackColor = true;
@@ -163,6 +165,8 @@
             // 
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.richTextBox1);
+            this.panel1.Controls.Add(this.buttonSelectPic);
             this.panel1.Controls.Add(this.label14);
             this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.dateTimePicker1);
@@ -176,6 +180,25 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(872, 944);
             this.panel1.TabIndex = 4;
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Location = new System.Drawing.Point(32, 636);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(814, 224);
+            this.richTextBox1.TabIndex = 10;
+            this.richTextBox1.Text = "";
+            this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
+            // 
+            // buttonSelectPic
+            // 
+            this.buttonSelectPic.Location = new System.Drawing.Point(152, 163);
+            this.buttonSelectPic.Name = "buttonSelectPic";
+            this.buttonSelectPic.Size = new System.Drawing.Size(148, 38);
+            this.buttonSelectPic.TabIndex = 9;
+            this.buttonSelectPic.Text = "选择图片";
+            this.buttonSelectPic.UseVisualStyleBackColor = true;
+            this.buttonSelectPic.Click += new System.EventHandler(this.buttonSelectPic_Click);
             // 
             // label14
             // 
@@ -248,7 +271,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(776, 3);
+            this.button4.Location = new System.Drawing.Point(678, -1);
             this.button4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(112, 46);
@@ -258,7 +281,7 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(909, 3);
+            this.button5.Location = new System.Drawing.Point(798, -1);
             this.button5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(115, 46);
@@ -288,13 +311,25 @@
             this.label13.Text = "3C-F8-62-52-3E-88";
             this.label13.Click += new System.EventHandler(this.label13_Click);
             // 
+            // buttonManageUser
+            // 
+            this.buttonManageUser.Location = new System.Drawing.Point(921, -1);
+            this.buttonManageUser.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.buttonManageUser.Name = "buttonManageUser";
+            this.buttonManageUser.Size = new System.Drawing.Size(129, 46);
+            this.buttonManageUser.TabIndex = 13;
+            this.buttonManageUser.Text = "用户管理";
+            this.buttonManageUser.UseVisualStyleBackColor = true;
+            this.buttonManageUser.Click += new System.EventHandler(this.buttonManageUser_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ClientSize = new System.Drawing.Size(1894, 1009);
+            this.ClientSize = new System.Drawing.Size(1548, 1059);
+            this.Controls.Add(this.buttonManageUser);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.button5);
@@ -348,6 +383,9 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Button buttonManageUser;
+        private System.Windows.Forms.Button buttonSelectPic;
+        private System.Windows.Forms.RichTextBox richTextBox1;
     }
 }
 
