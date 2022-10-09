@@ -94,9 +94,9 @@
             this.labelMac.AutoSize = true;
             this.labelMac.Location = new System.Drawing.Point(298, 225);
             this.labelMac.Name = "labelMac";
-            this.labelMac.Size = new System.Drawing.Size(142, 24);
+            this.labelMac.Size = new System.Drawing.Size(214, 24);
             this.labelMac.TabIndex = 6;
-            this.labelMac.Text = "00-00-00-00";
+            this.labelMac.Text = "00-00-00-00-00-00";
             // 
             // FormLogin
             // 

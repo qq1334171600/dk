@@ -96,6 +96,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Global.cs" />
     <Compile Include="Util.cs" />
     <Compile Include="FormLogin.cs">
       <SubType>Form</SubType>

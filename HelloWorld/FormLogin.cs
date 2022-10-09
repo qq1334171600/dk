@@ -15,6 +15,7 @@ namespace HelloWorld
         public FormLogin()
         {
             InitializeComponent();
+            labelMac.Text = Util.GetMacByNetworkInterface();
         }
 
         private void button1_Click(object sender, EventArgs e)

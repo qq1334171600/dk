@@ -31,7 +31,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.labelMac = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -66,15 +66,15 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "MAC地址：";
             // 
-            // label3
+            // labelMac
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(218, 192);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(214, 24);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "3C-F8-62-52-3E-88";
+            this.labelMac.AutoSize = true;
+            this.labelMac.Location = new System.Drawing.Point(218, 192);
+            this.labelMac.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelMac.Name = "labelMac";
+            this.labelMac.Size = new System.Drawing.Size(214, 24);
+            this.labelMac.TabIndex = 3;
+            this.labelMac.Text = "00-00-00-00-00-00";
             // 
             // button1
             // 
@@ -111,7 +111,7 @@
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.labelMac);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
@@ -128,7 +128,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label labelMac;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textBox2;

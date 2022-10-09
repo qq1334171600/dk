@@ -34,6 +34,7 @@
             "江苏省盐城市建湖县华瑞佳苑",
             "无",
             "测试备注"}, -1);
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -64,7 +65,7 @@
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
+            this.labelMac = new System.Windows.Forms.Label();
             this.buttonManageUser = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -325,6 +326,7 @@
             this.label11.Size = new System.Drawing.Size(34, 24);
             this.label11.TabIndex = 8;
             this.label11.Text = "否";
+            this.label11.Click += new System.EventHandler(this.label11_Click);
             // 
             // button4
             // 
@@ -354,20 +356,20 @@
             this.label12.Location = new System.Drawing.Point(1101, 10);
             this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(118, 24);
+            this.label12.Size = new System.Drawing.Size(106, 24);
             this.label12.TabIndex = 11;
-            this.label12.Text = "身份信息:";
+            this.label12.Text = "Mac地址:";
             // 
-            // label13
+            // labelMac
             // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(1222, 10);
-            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(214, 24);
-            this.label13.TabIndex = 12;
-            this.label13.Text = "3C-F8-62-52-3E-88";
-            this.label13.Click += new System.EventHandler(this.label13_Click);
+            this.labelMac.AutoSize = true;
+            this.labelMac.Location = new System.Drawing.Point(1222, 10);
+            this.labelMac.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelMac.Name = "labelMac";
+            this.labelMac.Size = new System.Drawing.Size(214, 24);
+            this.labelMac.TabIndex = 12;
+            this.labelMac.Text = "00-00-00-00-00-00";
+            this.labelMac.Click += new System.EventHandler(this.label13_Click);
             // 
             // buttonManageUser
             // 
@@ -382,14 +384,16 @@
             // 
             // FormMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 24F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(192F, 192F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ClientSize = new System.Drawing.Size(1663, 1059);
+            this.ClientSize = new System.Drawing.Size(1631, 1059);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.buttonManageUser);
-            this.Controls.Add(this.label13);
+            this.Controls.Add(this.labelMac);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
@@ -403,8 +407,9 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.DoubleBuffered = true;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormMain";
-            this.Text = "HelloForm";
+            this.Text = "主界面";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -440,7 +445,7 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label labelMac;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Button buttonManageUser;
         private System.Windows.Forms.Button buttonSelectPic;

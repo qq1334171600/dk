@@ -15,6 +15,8 @@ namespace HelloWorld
         public FormReg()
         {
             InitializeComponent();
+            string mac = Util.GetMacByNetworkInterface();
+            labelMac.Text = mac;
         }
 
         private void label1_Click(object sender, EventArgs e)
