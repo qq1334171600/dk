@@ -16,7 +16,7 @@ namespace HelloWorld
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());//这里是启动窗体
+            Application.Run(new FormMain());//这里是启动窗体
         }
     }
 }

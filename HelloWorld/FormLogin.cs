@@ -10,14 +10,19 @@ using System.Windows.Forms;
 
 namespace HelloWorld
 {
-    public partial class Form2 : Form
+    public partial class FormLogin : Form
     {
-        public Form2()
+        public FormLogin()
         {
             InitializeComponent();
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
         {
 
         }

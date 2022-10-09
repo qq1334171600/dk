@@ -1,6 +1,6 @@
 ﻿namespace HelloWorld
 {
-    partial class Form1
+    partial class FormMain
     {
         /// <summary>
         /// 必需的设计器变量。
@@ -43,7 +43,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.buttonDk = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
@@ -53,6 +53,12 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.button2 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.time = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.location = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.pic = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.beizhu = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
@@ -60,12 +66,6 @@
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.buttonManageUser = new System.Windows.Forms.Button();
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.time = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.location = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.pic = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.beizhu = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -154,15 +154,15 @@
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
             // 
-            // button1
+            // buttonDk
             // 
-            this.button1.Location = new System.Drawing.Point(308, 863);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(192, 76);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "点击打卡";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.buttonDk.Location = new System.Drawing.Point(308, 863);
+            this.buttonDk.Name = "buttonDk";
+            this.buttonDk.Size = new System.Drawing.Size(192, 76);
+            this.buttonDk.TabIndex = 4;
+            this.buttonDk.Text = "点击打卡";
+            this.buttonDk.UseVisualStyleBackColor = true;
+            this.buttonDk.Click += new System.EventHandler(this.button1_Click);
             // 
             // label8
             // 
@@ -183,7 +183,7 @@
             this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.dateTimePicker1);
             this.panel1.Controls.Add(this.label8);
-            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.buttonDk);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.label6);
@@ -260,80 +260,6 @@
             this.panel2.Size = new System.Drawing.Size(609, 944);
             this.panel2.TabIndex = 6;
             // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(398, 10);
-            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(130, 24);
-            this.label10.TabIndex = 7;
-            this.label10.Text = "是否登录：";
-            this.label10.Click += new System.EventHandler(this.label10_Click);
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(530, 10);
-            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(34, 24);
-            this.label11.TabIndex = 8;
-            this.label11.Text = "否";
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(678, -1);
-            this.button4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(112, 46);
-            this.button4.TabIndex = 9;
-            this.button4.Text = "登录";
-            this.button4.UseVisualStyleBackColor = true;
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(798, -1);
-            this.button5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(115, 46);
-            this.button5.TabIndex = 10;
-            this.button5.Text = "注册";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(1101, 10);
-            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(118, 24);
-            this.label12.TabIndex = 11;
-            this.label12.Text = "身份信息:";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(1222, 10);
-            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(214, 24);
-            this.label13.TabIndex = 12;
-            this.label13.Text = "3C-F8-62-52-3E-88";
-            this.label13.Click += new System.EventHandler(this.label13_Click);
-            // 
-            // buttonManageUser
-            // 
-            this.buttonManageUser.Location = new System.Drawing.Point(921, -1);
-            this.buttonManageUser.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.buttonManageUser.Name = "buttonManageUser";
-            this.buttonManageUser.Size = new System.Drawing.Size(129, 46);
-            this.buttonManageUser.TabIndex = 13;
-            this.buttonManageUser.Text = "用户管理";
-            this.buttonManageUser.UseVisualStyleBackColor = true;
-            this.buttonManageUser.Click += new System.EventHandler(this.buttonManageUser_Click);
-            // 
             // listView1
             // 
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -379,7 +305,82 @@
             // 
             this.beizhu.Text = "备注";
             // 
-            // Form1
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(398, 10);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(130, 24);
+            this.label10.TabIndex = 7;
+            this.label10.Text = "是否登录：";
+            this.label10.Click += new System.EventHandler(this.label10_Click);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(530, 10);
+            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(34, 24);
+            this.label11.TabIndex = 8;
+            this.label11.Text = "否";
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(678, -1);
+            this.button4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(112, 46);
+            this.button4.TabIndex = 9;
+            this.button4.Text = "登录";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(798, -1);
+            this.button5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(115, 46);
+            this.button5.TabIndex = 10;
+            this.button5.Text = "注册";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(1101, 10);
+            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(118, 24);
+            this.label12.TabIndex = 11;
+            this.label12.Text = "身份信息:";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(1222, 10);
+            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(214, 24);
+            this.label13.TabIndex = 12;
+            this.label13.Text = "3C-F8-62-52-3E-88";
+            this.label13.Click += new System.EventHandler(this.label13_Click);
+            // 
+            // buttonManageUser
+            // 
+            this.buttonManageUser.Location = new System.Drawing.Point(921, -1);
+            this.buttonManageUser.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.buttonManageUser.Name = "buttonManageUser";
+            this.buttonManageUser.Size = new System.Drawing.Size(129, 46);
+            this.buttonManageUser.TabIndex = 13;
+            this.buttonManageUser.Text = "用户管理";
+            this.buttonManageUser.UseVisualStyleBackColor = true;
+            this.buttonManageUser.Click += new System.EventHandler(this.buttonManageUser_Click);
+            // 
+            // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -402,7 +403,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.DoubleBuffered = true;
-            this.Name = "Form1";
+            this.Name = "FormMain";
             this.Text = "HelloForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -427,7 +428,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonDk;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button button2;

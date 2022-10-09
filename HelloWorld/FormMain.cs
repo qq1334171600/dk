@@ -14,11 +14,11 @@ using Qiniu.Util;
 
 namespace HelloWorld
 {
-    public partial class Form1 : Form
+    public partial class FormMain : Form
     {
         MySqlConnection conn;
         String filePath = "";
-        public Form1()
+        public FormMain()
         {
             InitializeComponent();
             conn = GetMySqlConnection();
@@ -125,7 +125,7 @@ namespace HelloWorld
             string SecretKey = "f7N8e_NqIWD32WZiq1tHz64amL60WbK28Ikl1nK8";
             Mac mac = new Mac(AccessKey, SecretKey);
             // 上传文件名
-            string key = "dk-"+ GetMacByNetworkInterface()+ DateTime.Now.ToString()+".jpg";
+            string key = "dk/"+ GetMacByNetworkInterface()+"/"+ DateTime.Now.ToString()+".jpg";
             // 本地文件路径
             string filePath = this.filePath;
             // 存储空间名
@@ -151,10 +151,6 @@ namespace HelloWorld
             FormUploader target = new FormUploader(config);
             HttpResult result = await target.UploadFile(filePath, key, token, null);
             MessageBox.Show(result.ToString());
-
-
-
-
             //string dkResult = dateTimePicker1.Text +"\n"+ label14.Text +"\n"+ filePath +"\n"+ richTextBox1.Text;
             //MessageBox.Show("打卡成功:\n"+dkResult);
         }
@@ -184,7 +180,7 @@ namespace HelloWorld
         */
         private void button5_Click(object sender, EventArgs e)
         {
-            Form2 formRegister=new Form2();
+            FormReg formRegister=new FormReg();
             formRegister.Show();
         }
 
@@ -240,6 +236,12 @@ namespace HelloWorld
 
             MessageBox.Show("双击了" + this.listView1.SelectedItems[0] );
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            FormLogin formLogin = new FormLogin();
+            formLogin.Show();
+        }
     }
     class CLocation
     {
@@ -285,7 +287,7 @@ namespace HelloWorld
 
         void PrintPosition(double Latitude, double Longitude)
         {
-            string result=Form1.HttpGetNew("http://restapi.amap.com/v3/geocode/regeo?location="+Longitude+","+Latitude+"&key=17479d86c0c6a0305024e1142351a0a4","");
+            string result=FormMain.HttpGetNew("http://restapi.amap.com/v3/geocode/regeo?location="+Longitude+","+Latitude+"&key=17479d86c0c6a0305024e1142351a0a4","");
             
             if(result.Length > 0)
             {
