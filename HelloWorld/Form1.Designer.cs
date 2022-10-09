@@ -28,6 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
+            "张健",
+            "2022-10-09 17:39:02",
+            "江苏省盐城市建湖县华瑞佳苑",
+            "无",
+            "测试备注"}, -1);
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -54,6 +60,12 @@
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.buttonManageUser = new System.Windows.Forms.Button();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.time = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.location = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.pic = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.beizhu = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -231,7 +243,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(460, 13);
+            this.button2.Location = new System.Drawing.Point(1519, 93);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(82, 46);
             this.button2.TabIndex = 1;
@@ -242,7 +254,7 @@
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.button2);
+            this.panel2.Controls.Add(this.listView1);
             this.panel2.Location = new System.Drawing.Point(894, 93);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(609, 944);
@@ -322,13 +334,59 @@
             this.buttonManageUser.UseVisualStyleBackColor = true;
             this.buttonManageUser.Click += new System.EventHandler(this.buttonManageUser_Click);
             // 
+            // listView1
+            // 
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.name,
+            this.time,
+            this.location,
+            this.pic,
+            this.beizhu});
+            this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listView1.HideSelection = false;
+            this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem1});
+            this.listView1.Location = new System.Drawing.Point(0, 0);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(607, 942);
+            this.listView1.TabIndex = 2;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
+            this.listView1.DoubleClick += new System.EventHandler(this.listView1_DoubleClick);
+            // 
+            // name
+            // 
+            this.name.Text = "姓名";
+            this.name.Width = 90;
+            // 
+            // time
+            // 
+            this.time.Text = "打卡时间";
+            this.time.Width = 111;
+            // 
+            // location
+            // 
+            this.location.Text = "打卡地点";
+            this.location.Width = 208;
+            // 
+            // pic
+            // 
+            this.pic.Text = "图片";
+            this.pic.Width = 75;
+            // 
+            // beizhu
+            // 
+            this.beizhu.Text = "备注";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ClientSize = new System.Drawing.Size(1548, 1059);
+            this.ClientSize = new System.Drawing.Size(1663, 1059);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.buttonManageUser);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label12);
@@ -386,6 +444,12 @@
         private System.Windows.Forms.Button buttonManageUser;
         private System.Windows.Forms.Button buttonSelectPic;
         private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ColumnHeader name;
+        private System.Windows.Forms.ColumnHeader time;
+        private System.Windows.Forms.ColumnHeader location;
+        private System.Windows.Forms.ColumnHeader pic;
+        private System.Windows.Forms.ColumnHeader beizhu;
     }
 }
 

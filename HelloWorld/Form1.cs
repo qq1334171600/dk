@@ -229,6 +229,17 @@ namespace HelloWorld
         {
 
         }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listView1_DoubleClick(object sender, EventArgs e)
+        {
+
+            MessageBox.Show("双击了" + this.listView1.SelectedItems[0] );
+        }
     }
     class CLocation
     {
