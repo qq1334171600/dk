@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using System.Device.Location;
 using System.IO;
 using System.Net;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using Newtonsoft.Json;
+using Qiniu.Http;
+using Qiniu.Storage;
+using Qiniu.Util;
 
 namespace HelloWorld
 {
@@ -100,11 +104,59 @@ namespace HelloWorld
                 e.Cancel = true;
             }
         }
-
-        private void button1_Click(object sender, EventArgs e)
+        public static string GetMacByNetworkInterface()
         {
-            string dkResult = dateTimePicker1.Text +"\n"+ label14.Text +"\n"+ filePath +"\n"+ richTextBox1.Text;
-            MessageBox.Show("打卡成功:\n"+dkResult);
+            try
+            {
+                NetworkInterface[] interfaces = NetworkInterface.GetAllNetworkInterfaces();
+                foreach (NetworkInterface ni in interfaces)
+                {
+                    return BitConverter.ToString(ni.GetPhysicalAddress().GetAddressBytes());
+                }
+            }
+            catch (Exception)
+            {
+            }
+            return "00-00-00-00-00-00";
+        }
+        private async void button1_Click(object sender, EventArgs e)
+        {
+            string AccessKey = "mjd6uCjQwnEAJIuBO7SVEZmgKc9oIwS3qHGWJx_O";
+            string SecretKey = "f7N8e_NqIWD32WZiq1tHz64amL60WbK28Ikl1nK8";
+            Mac mac = new Mac(AccessKey, SecretKey);
+            // 上传文件名
+            string key = "dk-"+ GetMacByNetworkInterface()+ DateTime.Now.ToString()+".jpg";
+            // 本地文件路径
+            string filePath = this.filePath;
+            // 存储空间名
+            string Bucket = "z1334";
+            // 设置上传策略
+            PutPolicy putPolicy = new PutPolicy();
+            // 设置要上传的目标空间
+            putPolicy.Scope = Bucket;
+            // 上传策略的过期时间(单位:秒)
+            putPolicy.SetExpires(3600);
+            // 文件上传完毕后，在多少天后自动被删除
+           // putPolicy.DeleteAfterDays = 1;
+            // 生成上传token
+            string token = Auth.CreateUploadToken(mac, putPolicy.ToJsonString());
+            Config config = new Config();
+            // 设置上传区域
+            config.Zone = Zone.ZoneCnEast;
+            // 设置 http 或者 https 上传
+            config.UseHttps = false;
+            config.UseCdnDomains = false;
+            config.ChunkSize = ChunkUnit.U512K;
+            // 表单上传
+            FormUploader target = new FormUploader(config);
+            HttpResult result = await target.UploadFile(filePath, key, token, null);
+            MessageBox.Show(result.ToString());
+
+
+
+
+            //string dkResult = dateTimePicker1.Text +"\n"+ label14.Text +"\n"+ filePath +"\n"+ richTextBox1.Text;
+            //MessageBox.Show("打卡成功:\n"+dkResult);
         }
 
         private void button2_Click(object sender, EventArgs e)
