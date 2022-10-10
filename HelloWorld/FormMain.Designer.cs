@@ -290,7 +290,7 @@
             // time
             // 
             this.time.Text = "打卡时间";
-            this.time.Width = 111;
+            this.time.Width = 257;
             // 
             // location
             // 
@@ -330,23 +330,23 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(678, -1);
+            this.button4.Location = new System.Drawing.Point(617, -1);
             this.button4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(112, 46);
+            this.button4.Size = new System.Drawing.Size(124, 46);
             this.button4.TabIndex = 9;
-            this.button4.Text = "登录";
+            this.button4.Text = "学生登录";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(798, -1);
+            this.button5.Location = new System.Drawing.Point(774, -1);
             this.button5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(115, 46);
+            this.button5.Size = new System.Drawing.Size(139, 46);
             this.button5.TabIndex = 10;
-            this.button5.Text = "注册";
+            this.button5.Text = "学生注册";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
@@ -373,12 +373,12 @@
             // 
             // buttonManageUser
             // 
-            this.buttonManageUser.Location = new System.Drawing.Point(921, -1);
+            this.buttonManageUser.Location = new System.Drawing.Point(938, -1);
             this.buttonManageUser.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonManageUser.Name = "buttonManageUser";
             this.buttonManageUser.Size = new System.Drawing.Size(129, 46);
             this.buttonManageUser.TabIndex = 13;
-            this.buttonManageUser.Text = "用户管理";
+            this.buttonManageUser.Text = "管理员";
             this.buttonManageUser.UseVisualStyleBackColor = true;
             this.buttonManageUser.Click += new System.EventHandler(this.buttonManageUser_Click);
             // 

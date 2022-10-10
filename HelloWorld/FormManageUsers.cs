@@ -14,14 +14,15 @@ namespace HelloWorld
 {
     public partial class FormManageUsers : Form
     {
-        MySqlConnection connection;
-        MySqlCommand cmd;
-        StringBuilder builder;
+        /*MySqlConnection connection;
+        MySqlCommand cmd;*/
+        Dictionary<string,string> selectedRow = new Dictionary<string,string>();
         public FormManageUsers()
         {
             //初始化程序界面
             InitializeComponent();
-            Timer timer = new Timer
+            SelectUsers();
+            /*Timer timer = new Timer
             {
                 Interval = 3000
             };
@@ -32,72 +33,18 @@ namespace HelloWorld
                 }
                 
             };
-            timer.Start();
+            timer.Start();*/
 
         }
-        /**
-         *获取一个数据库连接（MySQL数据库）
-         *举例：我们想要使用自来水，就需要用水管连接到供水系统上
-         *水管即连接，有了可用的连接才可以使用数据库里的数据
-         *连接的材料：数据库的地址，数据库的名字，账号，密码。
-         * */
-        private MySqlConnection GetMySqlConnection()
-        {
-            string address = "server=120.48.99.11;port=3306;user=root;password=5845331588; database=dk;";
-            if (connection == null)
-            {
-                connection = new MySqlConnection(address);
-            }
-            return connection;
-        }
+      
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            if(connection == null)
-            {
-                GetMySqlConnection();
-            }
-            if (connection != null)
-            {
-                MessageBox.Show("初始化成功!");
-            }
-            else
-            {
-                MessageBox.Show("失败啦，找找原因吧！");
-            }
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            if (connection != null)
-            {
-                if(connection.State != ConnectionState.Open)
-                {
-                    try
-                    {
-                        connection.Open();
-                        MessageBox.Show("数据库连接成功！");
-                    }
-                    catch (MySqlException ex)
-                    {
-                        MessageBox.Show("数据库失败:" + ex.ToString());
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("数据库已经连接！无需重复连接！");
-                }
-
-            }
-        }
+      
+        
         private void SelectUsers()
         {
-            string sql = "select stu_name,stu_id from users";
-            cmd = new MySqlCommand(sql, connection);
-            MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
-            DataSet ds = new DataSet();
-            adapter.Fill(ds, "t_user");
-            dataGridView1.DataSource = ds.Tables[0];
+            string sql = "select stu_name,stu_id,stu_phone,stu_password from users";
+            DataBaseHepler dataBase = new DataBaseHepler();
+            dataGridView1.DataSource =dataBase.selectReturnDataTable(sql, "t_user");
         }
         private void button3_Click(object sender, EventArgs e)
         {
@@ -106,18 +53,19 @@ namespace HelloWorld
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            builder = new StringBuilder();
-            for (int i=0; i < dataGridView1.Rows.Count; i++)
+            try
             {
-                if (dataGridView1.Rows[i].Selected == true)
-                {
-                    for(int j=0; j < dataGridView1.Columns.Count; j++)
-                    {
-                        builder.Append(dataGridView1.Rows[i].Cells[j].Value.ToString()+",");
-                    }
-                }
+                selectedRow.Clear();
+                selectedRow.Add("学号", dataGridView1.Rows[e.RowIndex].Cells["学号"].Value.ToString());
+                selectedRow.Add("姓名", dataGridView1.Rows[e.RowIndex].Cells["姓名"].Value.ToString());
+                selectedRow.Add("手机号", dataGridView1.Rows[e.RowIndex].Cells["手机号"].Value.ToString());
+                selectedRow.Add("密码", dataGridView1.Rows[e.RowIndex].Cells["密码"].Value.ToString());
+
             }
-            //MessageBox.Show(builder.ToString());
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
         private void dataGridView1_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
@@ -141,46 +89,39 @@ namespace HelloWorld
             }
             e.CellStyle.SelectionBackColor = Color.Gray; // 选中单元格时，背景色
             e.CellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter; //单位格内数据对齐方式
-
+            e.CellStyle.NullValue = "无";
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            Form_add add=new Form_add();
+            FormReg add=new FormReg();
             add.Show();
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            if (builder != null && builder.Length > 0)
+            if (selectedRow.Count> 0)
             {
-                FormAlter alter = new FormAlter(builder.ToString().Split(',')[0], builder.ToString().Split(',')[1]);
+                FormAlter alter = new FormAlter(selectedRow["姓名"], selectedRow["学号"]);
                 alter.Show();
             }
-            
+
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
-           /* if (connection == null)
-            {
-                connection=GetMySqlConnection();
-                cmd=connection.
-            }
-            if (connection .State==ConnectionState.Closed)
-            {
-                connection.Open();
-            }*/
-           
             DialogResult dialog = MessageBox.Show("确定删除吗???", "警告!", MessageBoxButtons.YesNo,MessageBoxIcon.Exclamation);
-            if(dialog == DialogResult.Yes&&builder.Length>0)
+            if (dialog == DialogResult.Yes && selectedRow.Count > 0)
             {
-                cmd = new MySqlCommand(null,connection);
-                cmd.CommandText = "DELETE FROM users WHERE stu_id = \"" + builder.ToString().Split(',')[1]+"\"";
-                if (cmd.ExecuteNonQuery() > 0)
+
+                string sql = "DELETE FROM users WHERE stu_id = \"" + selectedRow["学号"] + "\"";
+                DataBaseHepler dataBase = new DataBaseHepler();
+                int result = dataBase.sqlExcute(sql);
+                if (result > 0)
                     MessageBox.Show("删除成功!");
                 else
                     MessageBox.Show("删除失败！");
+                SelectUsers();
             }
         }
 

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormReg));
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -35,12 +36,16 @@
             this.button1 = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
+            this.labelStuId = new System.Windows.Forms.Label();
+            this.textBoxStuId = new System.Windows.Forms.TextBox();
+            this.textBoxStuPhone = new System.Windows.Forms.TextBox();
+            this.labelStuPhone = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(115, 78);
+            this.label1.Location = new System.Drawing.Point(115, 44);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(106, 24);
@@ -50,7 +55,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(222, 75);
+            this.textBox1.Location = new System.Drawing.Point(222, 41);
             this.textBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(210, 35);
@@ -59,7 +64,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(103, 192);
+            this.label2.Location = new System.Drawing.Point(484, 272);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(118, 24);
@@ -69,7 +74,7 @@
             // labelMac
             // 
             this.labelMac.AutoSize = true;
-            this.labelMac.Location = new System.Drawing.Point(218, 192);
+            this.labelMac.Location = new System.Drawing.Point(599, 272);
             this.labelMac.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelMac.Name = "labelMac";
             this.labelMac.Size = new System.Drawing.Size(214, 24);
@@ -78,13 +83,14 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(220, 263);
+            this.button1.Location = new System.Drawing.Point(220, 250);
             this.button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(212, 46);
             this.button1.TabIndex = 4;
             this.button1.Text = "注册";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label4
             // 
@@ -103,11 +109,47 @@
             this.textBox2.Size = new System.Drawing.Size(210, 35);
             this.textBox2.TabIndex = 6;
             // 
+            // labelStuId
+            // 
+            this.labelStuId.AutoSize = true;
+            this.labelStuId.Location = new System.Drawing.Point(517, 44);
+            this.labelStuId.Name = "labelStuId";
+            this.labelStuId.Size = new System.Drawing.Size(70, 24);
+            this.labelStuId.TabIndex = 7;
+            this.labelStuId.Text = "学号:";
+            // 
+            // textBoxStuId
+            // 
+            this.textBoxStuId.Location = new System.Drawing.Point(602, 44);
+            this.textBoxStuId.Name = "textBoxStuId";
+            this.textBoxStuId.Size = new System.Drawing.Size(210, 35);
+            this.textBoxStuId.TabIndex = 8;
+            // 
+            // textBoxStuPhone
+            // 
+            this.textBoxStuPhone.Location = new System.Drawing.Point(602, 133);
+            this.textBoxStuPhone.Name = "textBoxStuPhone";
+            this.textBoxStuPhone.Size = new System.Drawing.Size(210, 35);
+            this.textBoxStuPhone.TabIndex = 9;
+            // 
+            // labelStuPhone
+            // 
+            this.labelStuPhone.AutoSize = true;
+            this.labelStuPhone.Location = new System.Drawing.Point(493, 136);
+            this.labelStuPhone.Name = "labelStuPhone";
+            this.labelStuPhone.Size = new System.Drawing.Size(94, 24);
+            this.labelStuPhone.TabIndex = 10;
+            this.labelStuPhone.Text = "手机号:";
+            // 
             // FormReg
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(604, 334);
+            this.ClientSize = new System.Drawing.Size(993, 346);
+            this.Controls.Add(this.labelStuPhone);
+            this.Controls.Add(this.textBoxStuPhone);
+            this.Controls.Add(this.textBoxStuId);
+            this.Controls.Add(this.labelStuId);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.button1);
@@ -115,9 +157,10 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FormReg";
-            this.Text = "注册窗口";
+            this.Text = "学生注册窗口";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -132,5 +175,9 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label labelStuId;
+        private System.Windows.Forms.TextBox textBoxStuId;
+        private System.Windows.Forms.TextBox textBoxStuPhone;
+        private System.Windows.Forms.Label labelStuPhone;
     }
 }
