@@ -30,12 +30,12 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormReg));
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBoxStuName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.labelMac = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBoxStuPassword = new System.Windows.Forms.TextBox();
             this.labelStuId = new System.Windows.Forms.Label();
             this.textBoxStuId = new System.Windows.Forms.TextBox();
             this.textBoxStuPhone = new System.Windows.Forms.TextBox();
@@ -53,13 +53,13 @@
             this.label1.Text = "用户名：";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
-            // textBox1
+            // textBoxStuName
             // 
-            this.textBox1.Location = new System.Drawing.Point(222, 41);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(210, 35);
-            this.textBox1.TabIndex = 1;
+            this.textBoxStuName.Location = new System.Drawing.Point(222, 41);
+            this.textBoxStuName.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBoxStuName.Name = "textBoxStuName";
+            this.textBoxStuName.Size = new System.Drawing.Size(210, 35);
+            this.textBoxStuName.TabIndex = 1;
             // 
             // label2
             // 
@@ -102,12 +102,12 @@
             this.label4.Text = "密码:";
             this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
-            // textBox2
+            // textBoxStuPassword
             // 
-            this.textBox2.Location = new System.Drawing.Point(222, 133);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(210, 35);
-            this.textBox2.TabIndex = 6;
+            this.textBoxStuPassword.Location = new System.Drawing.Point(222, 133);
+            this.textBoxStuPassword.Name = "textBoxStuPassword";
+            this.textBoxStuPassword.Size = new System.Drawing.Size(210, 35);
+            this.textBoxStuPassword.TabIndex = 6;
             // 
             // labelStuId
             // 
@@ -150,12 +150,12 @@
             this.Controls.Add(this.textBoxStuPhone);
             this.Controls.Add(this.textBoxStuId);
             this.Controls.Add(this.labelStuId);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.textBoxStuPassword);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.labelMac);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.textBoxStuName);
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -169,12 +169,12 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBoxStuName;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label labelMac;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBoxStuPassword;
         private System.Windows.Forms.Label labelStuId;
         private System.Windows.Forms.TextBox textBoxStuId;
         private System.Windows.Forms.TextBox textBoxStuPhone;

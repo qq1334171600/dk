@@ -31,6 +31,19 @@ namespace HelloWorld
 
         private void button1_Click(object sender, EventArgs e)
         {
+            string cmdString = "INSERT INTO users ( stu_name, stu_id,stu_password,stu_phone ,mac, course_id ) VALUES (\"" 
+                + textBoxStuName.Text + "\", \"" + textBoxStuId.Text+ "\", \"" + textBoxStuPassword.Text  +"\", \"" + textBoxStuPhone.Text + "\", \"" +labelMac.Text+"\", \"1\")";
+            DataBaseHepler dataBaseHepler = new DataBaseHepler();
+            MessageBox.Show(cmdString);
+            int result=dataBaseHepler.sqlExcute(cmdString);
+            if (result == 1)
+            {
+                MessageBox.Show("注册成功");
+            }
+            else
+            {
+                MessageBox.Show("注册失败");
+            }
 
         }
     }

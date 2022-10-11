@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace HelloWorld
 {
-    static  class Status
+    public static  class Status
     {
-       static bool isLogin = false;
+       public static bool isLogin = false;
     }
 }

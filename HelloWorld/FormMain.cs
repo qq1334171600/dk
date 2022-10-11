@@ -88,10 +88,17 @@ namespace HelloWorld
         }
         private  async void button1_Click(object sender, EventArgs e)
         {
-            HttpResult result =await Util.UploadPicture(filePath);
-            MessageBox.Show(result.ToString());
-            //string dkResult = dateTimePicker1.Text +"\n"+ label14.Text +"\n"+ filePath +"\n"+ richTextBox1.Text;
-            //MessageBox.Show("打卡成功:\n"+dkResult);
+            if (Status.isLogin)
+            {
+                HttpResult result = await Util.UploadPicture(filePath);
+                MessageBox.Show(result.ToString());
+                //string dkResult = dateTimePicker1.Text +"\n"+ label14.Text +"\n"+ filePath +"\n"+ richTextBox1.Text;
+                //MessageBox.Show("打卡成功:\n"+dkResult);
+            }
+            else
+            {
+                MessageBox.Show("请登录");
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -101,8 +108,15 @@ namespace HelloWorld
 
         private void button3_Click(object sender, EventArgs e)
         {
-            CLocation myLocation = new CLocation(label14);
-            myLocation.GetLocationEvent();
+            if (Status.isLogin == true)
+            {
+                CLocation myLocation = new CLocation(label14);
+                myLocation.GetLocationEvent();
+            }
+            else
+            {
+                MessageBox.Show("请先登录!");
+            }
         }
 
         private void label10_Click(object sender, EventArgs e)
@@ -146,17 +160,24 @@ namespace HelloWorld
 
         private void buttonSelectPic_Click(object sender, EventArgs e)
         {
-            System.Windows.Forms.OpenFileDialog fileDialog = new System.Windows.Forms.OpenFileDialog();//打开文件对话框 
-            fileDialog.InitialDirectory = System.AppDomain.CurrentDomain.BaseDirectory;//初始化路径
-            fileDialog.Filter = "图片(*.jpg;*.bmp;*.png)|*.jpg;*.bmp;*.png";//或"图片(*.jpg;*.bmp)|*.jpg;*.bmp";//过滤选项设置，文本文件，所有文件。
-            fileDialog.FilterIndex = 0;//当前使用第二个过滤字符串
-            fileDialog.RestoreDirectory = true;//对话框关闭时恢复原目录
-            fileDialog.Title = "选择图片";
-            if (fileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (Status.isLogin == true)
             {
-                filePath = fileDialog.FileName;
-                MessageBox.Show(filePath);
-                pictureBox1.LoadAsync(filePath);
+                System.Windows.Forms.OpenFileDialog fileDialog = new System.Windows.Forms.OpenFileDialog();//打开文件对话框 
+                fileDialog.InitialDirectory = System.AppDomain.CurrentDomain.BaseDirectory;//初始化路径
+                fileDialog.Filter = "图片(*.jpg;*.bmp;*.png)|*.jpg;*.bmp;*.png";//或"图片(*.jpg;*.bmp)|*.jpg;*.bmp";//过滤选项设置，文本文件，所有文件。
+                fileDialog.FilterIndex = 0;//当前使用第二个过滤字符串
+                fileDialog.RestoreDirectory = true;//对话框关闭时恢复原目录
+                fileDialog.Title = "选择图片";
+                if (fileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    filePath = fileDialog.FileName;
+                    MessageBox.Show(filePath);
+                    pictureBox1.LoadAsync(filePath);
+                }
+            }
+            else
+            {
+                MessageBox.Show("请登录");
             }
         }
 
@@ -185,6 +206,18 @@ namespace HelloWorld
         private void label11_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            if (Status.isLogin == true)
+            {
+
+            }
+            else
+            {
+                MessageBox.Show("请登录！");
+            }
         }
     }
     class CLocation
