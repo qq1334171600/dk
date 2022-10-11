@@ -45,6 +45,24 @@ namespace HelloWorld
             myResponseStream.Close();
             return retString;
         }
+        public static string HttpPostNew(string Url, string postDataStr)
+        {
+            byte[] postBytes = Encoding.GetEncoding("utf-8").GetBytes(postDataStr);
+            HttpWebRequest request = WebRequest.Create(Url) as HttpWebRequest;//(HttpWebRequest)WebRequest.Create(Url);
+            request.Method = "POST";
+            request.ContentType = "application/json";
+            request.ContentLength = postBytes.Length;
+            Stream myRequestStream = request.GetRequestStream();
+            myRequestStream.Write(postBytes, 0, postBytes.Length);
+            myRequestStream.Close();
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            Stream myResponseStream = response.GetResponseStream();
+            StreamReader myStreamReader = new StreamReader(myResponseStream, Encoding.GetEncoding("utf-8"));
+            string retString = myStreamReader.ReadToEnd();
+            myStreamReader.Close();
+            myResponseStream.Close();
+            return retString;
+        }
         public static async Task<HttpResult> UploadPicture(string filePath)
         {
             string AccessKey = "mjd6uCjQwnEAJIuBO7SVEZmgKc9oIwS3qHGWJx_O";

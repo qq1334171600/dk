@@ -22,7 +22,8 @@ namespace HelloWorld
         {
             InitializeComponent();
             labelMac.Text = Util.GetMacByNetworkInterface();
-            conn = GetMySqlConnection();
+            DataBaseHepler data = new DataBaseHepler();
+            conn = data.GetCon();
             if (conn!=null)
             {
                 try
@@ -37,30 +38,7 @@ namespace HelloWorld
                 }
             }
         }
-        private MySqlConnection GetMySqlConnection()
-        {
-            string address = "server=120.48.99.11;port=3306;user=root;password=5845331588; database=dk;";
-            MySqlConnection connection = new MySqlConnection(address);
-            return connection;
-        }
-        private string HttpPostNew(string Url, string postDataStr)
-        {
-            byte[] postBytes = Encoding.GetEncoding("utf-8").GetBytes(postDataStr);
-            HttpWebRequest request = WebRequest.Create(Url) as HttpWebRequest;//(HttpWebRequest)WebRequest.Create(Url);
-            request.Method = "POST";
-            request.ContentType = "application/json";
-            request.ContentLength = postBytes.Length;
-            Stream myRequestStream = request.GetRequestStream();
-            myRequestStream.Write(postBytes, 0, postBytes.Length);
-            myRequestStream.Close();
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            Stream myResponseStream = response.GetResponseStream();
-            StreamReader myStreamReader = new StreamReader(myResponseStream, Encoding.GetEncoding("utf-8"));
-            string retString = myStreamReader.ReadToEnd();
-            myStreamReader.Close();
-            myResponseStream.Close();
-            return retString;
-        }
+        
         private void Form1_FormClosing(object sender,FormClosingEventArgs e)
         {
             DialogResult dialog = MessageBox.Show("是否关闭", "提示", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);

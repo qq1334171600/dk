@@ -31,6 +31,16 @@ namespace HelloWorld
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (textBoxStuName.Text == "" || textBoxStuPassword.Text == "")
+            {
+                MessageBox.Show("请输入完整！");
+                return;
+            }
+            if (textBoxStuName.Text == "admin")
+            {
+                MessageBox.Show("管理员账号！请重新输入");
+                return;
+            }
             string cmdString = "INSERT INTO users ( stu_name, stu_id,stu_password,stu_phone ,mac, course_id ) VALUES (\"" 
                 + textBoxStuName.Text + "\", \"" + textBoxStuId.Text+ "\", \"" + textBoxStuPassword.Text  +"\", \"" + textBoxStuPhone.Text + "\", \"" +labelMac.Text+"\", \"1\")";
             DataBaseHepler dataBaseHepler = new DataBaseHepler();
