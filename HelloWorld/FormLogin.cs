@@ -22,16 +22,16 @@ namespace HelloWorld
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string username=textBoxUserName.Text;
+            string stuId=textBoxUserName.Text;
             string password=textBoxPassword.Text;
-            if (username == "" || password == "")
+            if (stuId == "" || password == "")
             {
                 MessageBox.Show("请输入完整！");
                 textBoxUserName.Text="";  //清空文本
                 textBoxPassword.Text = "";
                 return;
             }
-            if (username == "admin")
+            if (stuId == "admin")
             {
                 MessageBox.Show("管理员账号！请重新输入");
                 textBoxUserName.Text = "";  //清空文本
@@ -39,7 +39,7 @@ namespace HelloWorld
                 return;
             }
             DataBaseHepler hepler = new DataBaseHepler();
-            string sql = "select stu_password,is_online from users where stu_id=" + username;
+            string sql = "select stu_password,is_online from users where stu_id=" + stuId;
             MySqlDataReader sqlRead = hepler.selectReturnDataReader(sql);
             if (!sqlRead.Read())
             {
@@ -57,14 +57,17 @@ namespace HelloWorld
             else if (sqlRead["stu_password"].ToString().Trim() == password)
             {
                 MessageBox.Show("登录成功！");
-                string sqlUpdate = string.Format("update users set is_online='{0}' where stu_id='{1}'", 1, username);  //SQL语句，更新isOnline为上线状态
-                using (MySqlCommand cmdUpdate = new MySqlCommand(sqlUpdate, hepler.GetCon()))  //创建数据库命令类
-                {
-                    cmdUpdate.ExecuteNonQuery();  //执行SQL语句
-                    textBoxUserName.Text = "";
-                    textBoxPassword.Text = "";
-                    this.Hide();  //隐藏当前form
-                }
+                string sqlUpdate = string.Format("update users set is_online='{0}' where stu_id='{1}'", 1, stuId);  //SQL语句，更新isOnline为上线状态
+                hepler.sqlExcute(sqlUpdate);
+                Status.stuId = stuId;
+                Status.isLogin = true;
+                textBoxUserName.Text = "";
+                textBoxPassword.Text = "";
+                FormMain form=new FormMain();
+                form.Show();
+                form.Refresh();
+                this.Hide();  //隐藏当前form
+
             }
             else
             {

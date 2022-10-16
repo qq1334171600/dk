@@ -11,6 +11,7 @@ using Newtonsoft.Json;
 using Qiniu.Http;
 using Qiniu.Storage;
 using Qiniu.Util;
+using static System.Net.WebRequestMethods;
 
 namespace HelloWorld
 {
@@ -21,6 +22,14 @@ namespace HelloWorld
         public FormMain()
         {
             InitializeComponent();
+            if (Status.isLogin == true)
+            {
+                label11.Text = "是";
+            }
+            else
+            {
+                label11.Text = "否";
+            }
             labelMac.Text = Util.GetMacByNetworkInterface();
             DataBaseHepler data = new DataBaseHepler();
             conn = data.GetCon();
@@ -46,8 +55,14 @@ namespace HelloWorld
             {
                 try
                 {
+                    DataBaseHepler hepler = new DataBaseHepler();
+                    string sqlUpdate = string.Format("update users set is_online='{0}' where stu_id='{1}'", 0, Status.stuId);  //SQL语句，更新isOnline为上线状态
+                    hepler.sqlExcute(sqlUpdate);
+                    Status.isLogin = false;
+                    Status.stuId = "";
                     conn.Close();
                     MessageBox.Show("数据库已关闭");
+
                 }catch(MySqlException e1)
                 {
                     MessageBox.Show(e1.Message);
@@ -63,13 +78,28 @@ namespace HelloWorld
             {
                 e.Cancel = true;
             }
+            this.Dispose();
         }
         private  async void button1_Click(object sender, EventArgs e)
         {
             if (Status.isLogin)
             {
+                string picUrl = "http://7.zhangjian.link/dk/";
+                //http://7.zhangjian.link/dk/202200501240/2022-10-16/12-00-17.jpg
                 HttpResult result = await Util.UploadPicture(filePath);
-                MessageBox.Show(result.ToString());
+                if(result.Code == 200)
+                {
+                    string cmdString = "INSERT INTO attendance ( attendance_id, stu_id,time,location ,pic_url, notes ) VALUES (\""
+                + "dk_" + Status.stuId + "_" + Util.GetMacByNetworkInterface() + "_" + DateTime.Now.ToString("yyyy-MM-dd/HH-mm-ss") +"\",\""
+                + Status.stuId+"\",\""+ dateTimePicker1.Text+"\",\""+label14.Text+"\",\""+picUrl+Status.stuId+"/"+ DateTime.Now.ToString("yyyy-MM-dd/HH-mm-ss")+".jpg\",\""+richTextBox1.Text+"\")";
+                    MessageBox.Show(cmdString);
+                    DataBaseHepler hepler = new DataBaseHepler();
+                    int dkResult = hepler.sqlExcute(cmdString);
+                    if (dkResult == 1)
+                    {
+                        MessageBox.Show("打卡成功");
+                    }
+                }
                 //string dkResult = dateTimePicker1.Text +"\n"+ label14.Text +"\n"+ filePath +"\n"+ richTextBox1.Text;
                 //MessageBox.Show("打卡成功:\n"+dkResult);
             }
@@ -179,6 +209,7 @@ namespace HelloWorld
         {
             FormLogin formLogin = new FormLogin();
             formLogin.Show();
+            this.Hide();
         }
 
         private void label11_Click(object sender, EventArgs e)

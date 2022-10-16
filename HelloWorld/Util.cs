@@ -69,7 +69,7 @@ namespace HelloWorld
             string SecretKey = "f7N8e_NqIWD32WZiq1tHz64amL60WbK28Ikl1nK8";
             Mac mac = new Mac(AccessKey, SecretKey);
             // 上传文件名
-            string key = "dk/" + Util.GetMacByNetworkInterface() + "/" + DateTime.Now.ToString() + ".jpg";
+            string key = "dk/" + Status.stuId + "/" + DateTime.Now.ToString("yyyy-MM-dd/HH-mm-ss")+ ".jpg";
             // 存储空间名
             string Bucket = "z1334";
             // 设置上传策略
