@@ -82,5 +82,16 @@ namespace HelloWorld
         {
 
         }
+
+        private void FormLogin_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FormLogin_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            FormMain form=new FormMain();
+            form.Show();
+        }
     }
 }

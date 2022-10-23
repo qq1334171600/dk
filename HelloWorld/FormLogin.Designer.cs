@@ -112,6 +112,8 @@
             this.Controls.Add(this.label1);
             this.Name = "FormLogin";
             this.Text = "登录窗口";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormLogin_FormClosing);
+            this.Load += new System.EventHandler(this.FormLogin_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
