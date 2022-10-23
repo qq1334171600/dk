@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Device.Location;
 using System.IO;
 using System.Net;
@@ -25,6 +26,8 @@ namespace HelloWorld
             if (Status.isLogin == true)
             {
                 label11.Text = "是";
+                InitListView();
+                RefreshListViewData();
             }
             else
             {
@@ -84,14 +87,14 @@ namespace HelloWorld
         {
             if (Status.isLogin)
             {
-                string picUrl = "http://7.zhangjian.link/dk/";
+                string picUrl = "http://7.zhangjian.link/";
                 //http://7.zhangjian.link/dk/202200501240/2022-10-16/12-00-17.jpg
                 HttpResult result = await Util.UploadPicture(filePath);
                 if(result.Code == 200)
                 {
                     string cmdString = "INSERT INTO attendance ( attendance_id, stu_id,time,location ,pic_url, notes ) VALUES (\""
                 + "dk_" + Status.stuId + "_" + Util.GetMacByNetworkInterface() + "_" + DateTime.Now.ToString("yyyy-MM-dd/HH-mm-ss") +"\",\""
-                + Status.stuId+"\",\""+ dateTimePicker1.Text+"\",\""+label14.Text+"\",\""+picUrl+Status.stuId+"/"+ DateTime.Now.ToString("yyyy-MM-dd/HH-mm-ss")+".jpg\",\""+richTextBox1.Text+"\")";
+                + Status.stuId+"\",\""+ dateTimePicker1.Text+"\",\""+label14.Text+"\",\""+picUrl+Status.picUrl+"\",\""+richTextBox1.Text+"\")";
                     MessageBox.Show(cmdString);
                     DataBaseHepler hepler = new DataBaseHepler();
                     int dkResult = hepler.sqlExcute(cmdString);
@@ -99,6 +102,14 @@ namespace HelloWorld
                     {
                         MessageBox.Show("打卡成功");
                     }
+                    else
+                    {
+                        MessageBox.Show(dkResult.ToString());
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("上传图片失败，请检查内容!");
                 }
                 //string dkResult = dateTimePicker1.Text +"\n"+ label14.Text +"\n"+ filePath +"\n"+ richTextBox1.Text;
                 //MessageBox.Show("打卡成功:\n"+dkResult);
@@ -111,7 +122,73 @@ namespace HelloWorld
 
         private void button2_Click(object sender, EventArgs e)
         {
+            if (Status.isLogin == true)
+            {
+                RefreshListViewData();
+            }
+            else
+            {
+                MessageBox.Show("请先登录!");
+            }
+        }
+        private void InitListView()
+        {
+            //构建表头
 
+            listView1.Columns.Add("姓名");
+
+            listView1.Columns.Add("学号");
+
+            listView1.Columns.Add("打卡时间");
+
+            listView1.Columns.Add("打卡位置");
+
+            listView1.Columns.Add("图片");
+
+            listView1.Columns.Add("备注");
+
+            listView1.Columns.Add("MAC地址");
+            
+
+        }
+        private void RefreshListViewData() {
+            listView1.Items.Clear();
+            string CommandText = "SELECT users.stu_name ,users.stu_id , time,location,pic_url,notes,mac " +
+                "FROM users,attendance " +
+                "WHERE users.stu_id=attendance.stu_id AND attendance.stu_id =" + Status.stuId;
+            //用cmd的函数执行语句，返回SqlDataReader类型的结果dr,dr就是返回的结果集(也就是数据库中查询到的表数据)
+            DataBaseHepler dataBaseHepler = new DataBaseHepler();
+            MySqlDataReader dr = dataBaseHepler.selectReturnDataReader(CommandText);
+            //用dr的read函数，每执行一次，返回一个包含下一行数据的集合dr
+
+            while (dr.Read())
+
+            {
+
+                //构建一个ListView的数据，存入数据库数据，以便添加到listView1的行数据中
+
+                ListViewItem lt = new ListViewItem();
+
+                //将数据库数据转变成ListView类型的一行数据
+
+                lt.Text = dr["stu_name"].ToString();
+
+                lt.SubItems.Add(dr["stu_id"].ToString());
+
+                lt.SubItems.Add(dr["time"].ToString());
+
+                lt.SubItems.Add(dr["location"].ToString());
+
+                lt.SubItems.Add(dr["pic_url"].ToString());
+
+                lt.SubItems.Add(dr["notes"].ToString());
+
+                lt.SubItems.Add(dr["mac"].ToString());
+
+                //将lt数据添加到listView1控件中
+                listView1.Items.Add(lt);
+            }
+            listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -193,16 +270,17 @@ namespace HelloWorld
         {
 
         }
-
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void listView1_DoubleClick(object sender, EventArgs e)
         {
-
-            MessageBox.Show("双击了" + this.listView1.SelectedItems[0] );
+            FormDetail detail = new FormDetail(
+                listView1.SelectedItems[0].Text,
+                listView1.SelectedItems[0].SubItems[1].Text,
+                listView1.SelectedItems[0].SubItems[2].Text,
+                listView1.SelectedItems[0].SubItems[3].Text,
+                listView1.SelectedItems[0].SubItems[4].Text,
+                listView1.SelectedItems[0].SubItems[5].Text
+                );
+            detail.Show();
         }
 
         private void button4_Click(object sender, EventArgs e)

@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace HelloWorld
 {
-    public partial class Form_add : Form
+    public partial class FormAdd : Form
     {
-        public Form_add()
+        public FormAdd()
         {
             InitializeComponent();
         }

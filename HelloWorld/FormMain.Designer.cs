@@ -28,12 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
-            "张健",
-            "2022-10-09 17:39:02",
-            "江苏省盐城市建湖县华瑞佳苑",
-            "无",
-            "测试备注"}, -1);
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -55,11 +49,6 @@
             this.button2 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.listView1 = new System.Windows.Forms.ListView();
-            this.name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.time = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.location = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.pic = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.beizhu = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
@@ -264,48 +253,15 @@
             // 
             // listView1
             // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.name,
-            this.time,
-            this.location,
-            this.pic,
-            this.beizhu});
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView1.HideSelection = false;
-            this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1});
             this.listView1.Location = new System.Drawing.Point(0, 0);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(607, 942);
             this.listView1.TabIndex = 2;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
-            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             this.listView1.DoubleClick += new System.EventHandler(this.listView1_DoubleClick);
-            // 
-            // name
-            // 
-            this.name.Text = "姓名";
-            this.name.Width = 90;
-            // 
-            // time
-            // 
-            this.time.Text = "打卡时间";
-            this.time.Width = 257;
-            // 
-            // location
-            // 
-            this.location.Text = "打卡地点";
-            this.location.Width = 208;
-            // 
-            // pic
-            // 
-            this.pic.Text = "图片";
-            this.pic.Width = 75;
-            // 
-            // beizhu
-            // 
-            this.beizhu.Text = "备注";
             // 
             // label10
             // 
@@ -452,11 +408,6 @@
         private System.Windows.Forms.Button buttonSelectPic;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.ColumnHeader name;
-        private System.Windows.Forms.ColumnHeader time;
-        private System.Windows.Forms.ColumnHeader location;
-        private System.Windows.Forms.ColumnHeader pic;
-        private System.Windows.Forms.ColumnHeader beizhu;
     }
 }
 
