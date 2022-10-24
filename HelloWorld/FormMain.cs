@@ -239,8 +239,8 @@ namespace HelloWorld
 
         private void buttonManageUser_Click(object sender, EventArgs e)
         {
-            FormManageUsers manageUsers = new FormManageUsers();
-            manageUsers.Show();
+            FormAdmin admin = new FormAdmin();
+            admin.Show();
         }
 
         private void buttonSelectPic_Click(object sender, EventArgs e)
